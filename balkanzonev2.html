@@ -296,8 +296,26 @@
         commentInput.value = '';
     });
 </script>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: #111;">
+    <div class="spinner">?</div>
+</div>
+
+<style>
+    .spinner {
+        font-size: 80px;
+        color: #ff6ec7;
+        /* Animacija vrti 40° po 0.2s */
+        animation: spin 1.8s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 
 </body>
 
 </html>
+
 
