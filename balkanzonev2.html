@@ -265,7 +265,7 @@
 <html lang="bs">
 <head>
 <meta charset="UTF-8">
-<title>3D Wooden Doors</title>
+<title>Future Wooden Doors</title>
 
 <style>
   html, body {
@@ -273,18 +273,15 @@
     min-height: 100%;
     background: radial-gradient(circle at top, #0a0a0f, #000);
     perspective: 1400px;
-    cursor: none;
     overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    cursor: default; /* standardni miš */
   }
 
   body {
     display: flex;
     flex-direction: column;
-  }
-
-  /* PROSTOR ZA SCROLL */
-  .space {
-    height: 150vh;
+    align-items: center;
   }
 
   /* GRID */
@@ -299,22 +296,29 @@
     pointer-events: none;
   }
 
- 
+  /* TEKST ISPOD KOJEG SU VRATA */
+  .server-text {
+    max-width: 800px;
+    color: cyan;
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 150px; /* prostor od vrha stranice */
+    text-shadow: 0 0 10px cyan;
+    padding: 0 20px;
+  }
 
-  /* SEKCJA SA VRATIMA */
-  
- .door-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 1600px; /* ≈ 1 metar gore */
-  transform-style: preserve-3d;
-}
+  /* RAZMAK ISPOD TEKSTA ZA VRATA */
+  .door-container {
+    margin-top: 80px; /* 5 cm od teksta */
+    margin-bottom: 40px; /* podignuta od dna stranice */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-style: preserve-3d;
+  }
 
-
-
+  /* VRATA */
   .door-zone {
     position: relative;
     width: 320px;
@@ -322,16 +326,14 @@
     transform-style: preserve-3d;
   }
 
-  /* OKVIR */
   .frame {
     position: absolute;
     inset: 0;
-    border: 4px solid #00ffff;
+    border: 4px solid cyan;
     box-shadow: 0 0 35px rgba(0,255,255,0.6);
     transform: translateZ(12px);
   }
 
-  /* DRVENA VRATA */
   .door {
     position: absolute;
     width: 50%;
@@ -360,7 +362,6 @@
     transform-origin: right;
   }
 
-  /* OTVARANJE */
   .door-zone.open .door.left {
     transform: rotateY(-105deg);
   }
@@ -369,7 +370,7 @@
     transform: rotateY(105deg);
   }
 
-  /* TEXT IZ VRATA */
+  /* TEKST IZ VRATA */
   .door-text {
     position: absolute;
     inset: 0;
@@ -395,12 +396,14 @@
 <body>
 
 <div class="grid"></div>
-<div id="cursor"></div>
 
-<div class="space"></div>
+<!-- TEKST ISPOD KOJEG SU VRATA -->
+<div class="server-text">
+ 
+</div>
 
-<!-- VRATA NA DNU -->
-<div class="door-section">
+<!-- VRATA ISPOD TEKSTA -->
+<div class="door-container">
   <div class="door-zone" id="door">
     <div class="frame"></div>
     <div class="door left"></div>
@@ -414,14 +417,9 @@
 </div>
 
 <script>
-  const cursor = document.getElementById("cursor");
   const door = document.getElementById("door");
 
-  document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-  });
-
+  // Otvaranje vrata na hover
   door.addEventListener("mouseenter", () => {
     door.classList.add("open");
   });
@@ -435,8 +433,8 @@
 
 
 
-
 </html>
+
 
 
 
